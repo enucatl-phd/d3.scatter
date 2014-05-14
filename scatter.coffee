@@ -2,7 +2,7 @@ if not d3.chart?
     d3.chart = {}
 
 d3.chart.scatter = ->
-    margin = {top: 20, right: 20, bottom: 20, left: 30}
+    margin = {top: 20, right: 20, bottom: 40, left: 70}
     width = 900
     height = 600
     x_value = (d, i) -> d[0]
@@ -62,14 +62,14 @@ d3.chart.scatter = ->
                 .append "text"
                 .classed "label", true
                 .attr "x", width - margin.right - margin.left
-                .attr "y", -6
+                .attr "y", margin.bottom - 6
                 .style "text-anchor", "end"
                 .text x_title
             g_enter.append "g"
                 .classed "y axis", true
                 .append "text"
                 .classed "label", true
-                .attr "y", 6
+                .attr "y", -margin.left + 6
                 .attr "transform", "rotate(-90)"
                 .attr "dy", ".71em"
                 .style "text-anchor", "end"
