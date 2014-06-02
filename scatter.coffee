@@ -5,6 +5,8 @@ d3.chart.scatter = ->
     margin = {top: 20, right: 20, bottom: 40, left: 70}
     width = 900
     height = 600
+    radius = 3
+    legend_square_size = 18
     x_value = (d, i) -> d[0]
     y_value = (d, i) -> d[1]
     color_value = (d) -> d.name
@@ -63,6 +65,7 @@ d3.chart.scatter = ->
                 .classed "label", true
                 .attr "x", width - margin.right - margin.left
                 .attr "y", margin.bottom - 6
+                .attr "dy", ".21em"
                 .style "text-anchor", "end"
                 .text x_title
             g_enter.append "g"
@@ -101,7 +104,7 @@ d3.chart.scatter = ->
             circles
                 .transition()
                 .duration(500)
-                .attr "r", 3
+                .attr "r", radius
                 .attr "cx", (d) -> x_scale(d.x)
                 .attr "cy", (d) -> y_scale(d.y)
                 .style "fill", (d) -> color_scale(d.color)
@@ -127,9 +130,9 @@ d3.chart.scatter = ->
                         .data [d]
                     rects.enter()
                         .append "rect"
-                        .attr "x", width - margin.right - margin.left - 18
-                        .attr "width", 18
-                        .attr "height", 18
+                        .attr "x", width - margin.right - margin.left - legend_square_size
+                        .attr "width", legend_square_size
+                        .attr "height", legend_square_size
                     rects
                         .style "fill", color_scale
                     texts = d3.select this
@@ -137,7 +140,7 @@ d3.chart.scatter = ->
                         .data [d]
                     texts.enter()
                         .append "text"
-                        .attr "x", width - margin.right - margin.left - 24
+                        .attr "x", width - margin.right - margin.left - legend_square_size - 2
                         .attr "y", 9
                         .attr "dy", ".35em"
                         .style "text-anchor", "end"
@@ -145,7 +148,7 @@ d3.chart.scatter = ->
                         .text (d) -> d
 
             legends
-                .attr "transform", (d, i) -> "translate(0, #{20 * i})"
+                .attr "transform", (d, i) -> "translate(0, #{(legend_square_size + 2) * i})"
 
             legends
                 .exit()
@@ -212,6 +215,18 @@ d3.chart.scatter = ->
         if not arguments.length
             return x_scale
         x_scale = value
+        chart
+
+    chart.legend_square_size = (value) ->
+        if not arguments.length
+            return legend_square_size
+        legend_square_size = value
+        chart
+
+    chart.radius = (value) ->
+        if not arguments.length
+            return radius
+        radius = value
         chart
 
     chart.y_scale = (value) ->
