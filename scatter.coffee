@@ -211,12 +211,6 @@ d3.chart.scatter = ->
         y_title = value
         chart
 
-    chart.x_scale = (value) ->
-        if not arguments.length
-            return x_scale
-        x_scale = value
-        chart
-
     chart.legend_square_size = (value) ->
         if not arguments.length
             return legend_square_size
@@ -227,6 +221,24 @@ d3.chart.scatter = ->
         if not arguments.length
             return radius
         radius = value
+        chart
+
+    chart.x_axis = (value) ->
+        if not arguments.length
+            return x_axis
+        x_axis = value
+        chart
+
+    chart.y_axis = (value) ->
+        if not arguments.length
+            return y_axis
+        y_axis = value
+        chart
+
+    chart.x_scale = (value) ->
+        if not arguments.length
+            return x_scale
+        x_scale = value
         chart
 
     chart.y_scale = (value) ->
