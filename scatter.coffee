@@ -64,16 +64,15 @@ d3.chart.scatter = ->
                 .append "text"
                 .classed "label", true
                 .attr "x", width - margin.right - margin.left
-                .attr "y", margin.bottom - 6
+                .attr "y", 0.9 * margin.bottom
                 .style "text-anchor", "end"
                 .text x_title
             g_enter.append "g"
                 .classed "y axis", true
                 .append "text"
                 .classed "label", true
-                .attr "y", -margin.left
+                .attr "y", -0.6 * margin.left
                 .attr "transform", "rotate(-90)"
-                .attr "dy", "2em"
                 .style "text-anchor", "end"
                 .text y_title
             g_enter.append "g"
@@ -140,7 +139,7 @@ d3.chart.scatter = ->
                     texts.enter()
                         .append "text"
                         .attr "x", width - margin.right - margin.left - legend_square_size - 2
-                        .attr "y", 9
+                        .attr "y", legend_square_size / 4
                         .attr "dy", legend_square_size / 2
                         .style "text-anchor", "end"
                     texts
