@@ -34,7 +34,7 @@ class d3.chart.Scatter extends d3.chart.BaseChart
         y_scale.range [height, 0]
 
         # select the svg if it exists
-        svg = d3.select this
+        svg = d3.select element
             .selectAll "svg"
             .data [data]
 
